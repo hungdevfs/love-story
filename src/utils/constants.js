@@ -12,3 +12,9 @@ export const SCREENS = {
   SIGN_UP: "SIGN_UP",
   HOME: "HOME",
 }
+
+export const USERNAME = "USERNAME"
+
+export const COLLECTIONS = {
+  USERS: "USERS",
+}

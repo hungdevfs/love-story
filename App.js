@@ -1,14 +1,17 @@
 import React from "react"
 import { StyleSheet, View, StatusBar } from "react-native"
 
-import AppNavigator from "./navigators/AppNavigator"
+import { AppProvider } from "./src/contexts/AppContext"
+import AppNavigator from "./src/navigators/AppNavigator"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar />
-      <AppNavigator />
-    </View>
+    <AppProvider>
+      <View style={styles.container}>
+        <StatusBar />
+        <AppNavigator />
+      </View>
+    </AppProvider>
   )
 }
 
