@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import * as Notifications from "expo-notifications"
 
+import { getUser } from "../services/api"
 import { registerForPushNotificationsAsync } from "../services/notificationService"
 import { USERNAME } from "../utils/constants"
 
@@ -18,7 +19,9 @@ export const AppContext = React.createContext()
 export const AppProvider = ({ children }) => {
   const [token, setToken] = useState("")
   const [username, setUsername] = useState("")
-  const [partner, setPartner] = useState(null)
+  const [partnerId, setPartnerId] = useState(null)
+  const [partnerName, setPartnerName] = useState(null)
+  const [startDate, setStartDate] = useState(null)
   const [isCheckingAuthentication, setIsCheckingAuthentication] = useState(true)
   const [isLogged, setIsLogged] = useState(false)
 
@@ -45,6 +48,10 @@ export const AppProvider = ({ children }) => {
     if (user) {
       setUsername(user)
       setIsLogged(true)
+      const data = await getUser(user)
+      setPartnerId(data?.partnerId)
+      setPartnerName(data?.partnerName)
+      setStartDate(data?.startDate)
     }
     setIsCheckingAuthentication(false)
   }
@@ -54,12 +61,16 @@ export const AppProvider = ({ children }) => {
       value={{
         token,
         username,
-        partner,
+        partnerId,
+        partnerName,
+        startDate,
         isCheckingAuthentication,
         isLogged,
         setToken,
         setUsername,
-        setPartner,
+        setPartnerId,
+        setPartnerName,
+        setStartDate,
         setIsCheckingAuthentication,
         setIsLogged,
       }}

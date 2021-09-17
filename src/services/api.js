@@ -15,3 +15,9 @@ export const createUser = async (username, token) => {
   await db.collection(COLLECTIONS.USERS).doc(username).set({ token })
   await AsyncStorage.setItem(USERNAME, username)
 }
+
+export const getUser = async (username) => {
+  console.log({ username })
+  const snapshot = await db.collection(COLLECTIONS.USERS).doc(username).get()
+  return snapshot.data()
+}
