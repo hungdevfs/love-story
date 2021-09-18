@@ -4,9 +4,9 @@
     "slug": "love-story",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./src/assets/app-info/icon.png",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./src/assets/app-info/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/app-info/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./src/assets/images/favicon.png"
+      "favicon": "./src/assets/app-info/favicon.png"
     }
   }
 }

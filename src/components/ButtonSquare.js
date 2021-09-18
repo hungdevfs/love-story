@@ -1,15 +1,17 @@
 import React from "react"
-import { Text, TouchableOpacity, StyleSheet } from "react-native"
+import { Text, TouchableOpacity, StyleSheet, Image } from "react-native"
 
 import { COLORS } from "../utils/constants"
+import Images from "../utils/Images"
 
-const ButtonSquare = ({ backgroundColor, textColor, text, onPress }) => {
+const ButtonSquare = ({ backgroundColor, textColor, text, icon, onPress }) => {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor }]}
       onPress={onPress}
     >
       <Text style={[styles.text, { color: textColor }]}>{text}</Text>
+      {icon && <Image style={styles.icon} source={Images[icon]} />}
     </TouchableOpacity>
   )
 }
@@ -31,5 +33,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "bold",
+    marginBottom: 8,
+  },
+  icon: {
+    width: 30,
+    height: 30,
   },
 })

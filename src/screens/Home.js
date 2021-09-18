@@ -65,24 +65,28 @@ const Home = () => {
       text: "I love you!",
       backgroundColor: COLORS.RED,
       textColor: COLORS.WHITE,
+      icon: "love",
       onPress: () => notify(`${username} wants to say: I love you!`),
     },
     {
       text: "Come hereeee!",
       backgroundColor: COLORS.GREEN,
       textColor: COLORS.WHITE,
+      icon: "travel",
       onPress: () => notify(`${username} wants to say: Come hereeee!`),
     },
     {
       text: "Get away from me!",
       backgroundColor: COLORS.YELLOW,
       textColor: COLORS.BLACK,
+      icon: "angry",
       onPress: () => notify(`${username} wants to say: Get away from me!`),
     },
     {
       text: "I hate you!!!",
       backgroundColor: COLORS.GRAY,
       textColor: COLORS.BLACK,
+      icon: "hate",
       onPress: () =>
         notify(`${username} hates you so much. What did you do???`),
     },

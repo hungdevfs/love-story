@@ -37,6 +37,7 @@ const HomePartner = ({
               backgroundColor={btn.backgroundColor}
               textColor={btn.textColor}
               text={btn.text}
+              icon={btn.icon}
               onPress={btn.onPress}
             />
           ))}
@@ -48,6 +49,7 @@ const HomePartner = ({
               backgroundColor={btn.backgroundColor}
               textColor={btn.textColor}
               text={btn.text}
+              icon={btn.icon}
               onPress={btn.onPress}
             />
           ))}
