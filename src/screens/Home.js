@@ -90,7 +90,7 @@ const Home = () => {
       textColor: COLORS.BLACK,
       icon: "hate",
       onPress: () =>
-        notify(`${username} hates you so much. What did you do???`, null),
+        notify(`${username} hates you so much. What did you do???`, ""),
     },
   ]
 
