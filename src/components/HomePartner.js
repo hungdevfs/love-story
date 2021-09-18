@@ -1,5 +1,12 @@
 import React from "react"
-import { View, Text, TextInput, StyleSheet, Dimensions } from "react-native"
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Dimensions,
+} from "react-native"
 
 import ButtonSquare from "./ButtonSquare"
 import Button from "./Button"
@@ -19,7 +26,7 @@ const HomePartner = ({
   sendMessage,
 }) => {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <View style={styles.content}>
         <View style={styles.avatars}>
           <Avatar username={username} />
@@ -72,7 +79,7 @@ const HomePartner = ({
           onPress={sendMessage}
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
