@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Love Story",
-    "slug": "Love Story",
+    "slug": "LoveStory",
     "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./src/assets/app-info/icon.png",
