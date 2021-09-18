@@ -9,9 +9,10 @@ import { AppContext } from "../contexts/AppContext"
 const SignUp = () => {
   const context = useContext(AppContext)
   const [newUsername, setNewUsername] = useState("")
-  const { token, setUsername, setIsLogged } = context
+  const { token, setUsername, setIsLogged, setIsLoading } = context
 
   const create = async () => {
+    setIsLoading(true)
     try {
       await createUser(newUsername, token)
       setUsername(newUsername)
@@ -19,6 +20,7 @@ const SignUp = () => {
     } catch (err) {
       alert(err.message)
     }
+    setIsLoading(false)
   }
 
   return (

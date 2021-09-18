@@ -8,6 +8,7 @@ export const COLORS = {
   LIGHT: "#ddd",
   YELLOW: "#f1c40f",
   BLACK: "#000",
+  OVERLAY: "rgba(0, 0, 0, 0.4)",
 }
 
 export const FONTSIZES = {
@@ -28,3 +29,5 @@ export const COLLECTIONS = {
 }
 
 export const DATE_FORMAT = "DD/MM/YYYY"
+
+export const EXPO_NOTIFICATION_URL = "https://exp.host/--/api/v2/push/send"

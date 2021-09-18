@@ -24,6 +24,7 @@ export const AppProvider = ({ children }) => {
   const [startDate, setStartDate] = useState(null)
   const [isCheckingAuthentication, setIsCheckingAuthentication] = useState(true)
   const [isLogged, setIsLogged] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     init()
@@ -44,18 +45,23 @@ export const AppProvider = ({ children }) => {
   }
 
   const checkAuth = async () => {
-    const user = await AsyncStorage.getItem(USERNAME)
-    if (user) {
-      setUsername(user)
-      setIsLogged(true)
-      const data = await getUser(user)
-      if (data?.partnerName) {
-        setPartnerName(data.partnerName)
-        setStartDate(data.startDate)
+    try {
+      const user = await AsyncStorage.getItem(USERNAME)
+      if (user) {
+        setUsername(user)
+        setIsLogged(true)
+        const data = await getUser(user)
+        if (data?.partnerName) {
+          setPartnerName(data.partnerName)
+          setStartDate(data.startDate)
 
-        const partner = await getUser(data.partnerName)
-        setPartnerToken(partner.token)
+          const partner = await getUser(data.partnerName)
+          setPartnerToken(partner.token)
+        }
       }
+    } catch {
+      await AsyncStorage.removeItem(USERNAME)
+      setIsLogged(false)
     }
     setIsCheckingAuthentication(false)
   }
@@ -70,6 +76,7 @@ export const AppProvider = ({ children }) => {
         startDate,
         isCheckingAuthentication,
         isLogged,
+        isLoading,
         setToken,
         setUsername,
         setPartnerName,
@@ -77,6 +84,7 @@ export const AppProvider = ({ children }) => {
         setStartDate,
         setIsCheckingAuthentication,
         setIsLogged,
+        setIsLoading,
       }}
     >
       {children}

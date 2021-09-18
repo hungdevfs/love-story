@@ -3,6 +3,7 @@ import { StyleSheet, View, StatusBar } from "react-native"
 
 import { AppProvider } from "./src/contexts/AppContext"
 import AppNavigator from "./src/navigators/AppNavigator"
+import Loading from "./src/components/Loading"
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <View style={styles.container}>
         <StatusBar />
         <AppNavigator />
+        <Loading />
       </View>
     </AppProvider>
   )

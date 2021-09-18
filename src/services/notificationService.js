@@ -1,5 +1,8 @@
 import * as Notifications from "expo-notifications"
 import Constants from "expo-constants"
+import axios from "axios"
+
+import { EXPO_NOTIFICATION_URL } from "../utils/constants"
 
 export const schedulePushNotification = async () => {
   await Notifications.scheduleNotificationAsync({
@@ -41,3 +44,6 @@ export const registerForPushNotificationsAsync = async () => {
 
   return token
 }
+
+export const sendNotification = ({ to, title }) =>
+  axios.post(EXPO_NOTIFICATION_URL, { to, title })

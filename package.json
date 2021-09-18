@@ -12,6 +12,7 @@
     "@react-native-async-storage/async-storage": "^1.15.8",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
+    "axios": "^0.21.4",
     "expo": "~42.0.1",
     "expo-constants": "~11.0.1",
     "expo-notifications": "~0.12.3",
@@ -22,6 +23,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-indicators": "^0.17.0",
     "react-native-modal": "^13.0.0",
     "react-native-neat-date-picker": "^1.0.7",
     "react-native-web": "~0.13.12"

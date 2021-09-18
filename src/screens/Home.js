@@ -5,8 +5,10 @@ import { AppContext } from "../contexts/AppContext"
 import HomeSingle from "../components/HomeSingle"
 import HomePartner from "../components/HomePartner"
 
+import { isNullOrWhiteSpace } from "../utils/helpers"
 import { COLORS } from "../utils/constants"
 import { addPartner } from "../services/api"
+import { sendNotification } from "../services/notificationService"
 
 const Home = () => {
   const context = useContext(AppContext)
@@ -19,6 +21,7 @@ const Home = () => {
     setPartnerToken,
     setStartDate,
     setIsLogged,
+    setIsLoading,
   } = context
 
   const [newPartnerName, setNewPartnerName] = useState("")
@@ -29,6 +32,7 @@ const Home = () => {
   const isSingle = !partnerName
 
   const onAddPartner = async () => {
+    setIsLoading(true)
     try {
       const res = await addPartner(
         username,
@@ -42,34 +46,45 @@ const Home = () => {
     } catch (err) {
       alert(err.message)
     }
+    setIsLoading(false)
   }
 
-  const sendMessage = () => {}
+  const notify = async (title) => {
+    try {
+      await sendNotification({
+        to: partnerToken,
+        title,
+      })
+    } catch (err) {
+      alert(err.message)
+    }
+  }
 
   const buttons = [
     {
       text: "I love you!",
       backgroundColor: COLORS.RED,
       textColor: COLORS.WHITE,
-      onPress: () => {},
+      onPress: () => notify(`${username} wants to say: I love you!`),
     },
     {
       text: "Come hereeee!",
       backgroundColor: COLORS.GREEN,
       textColor: COLORS.WHITE,
-      onPress: () => {},
+      onPress: () => notify(`${username} wants to say: Come hereeee!`),
     },
     {
       text: "Get away from me!",
       backgroundColor: COLORS.YELLOW,
       textColor: COLORS.BLACK,
-      onPress: () => {},
+      onPress: () => notify(`${username} wants to say: Get away from me!`),
     },
     {
       text: "I hate you!!!",
       backgroundColor: COLORS.GRAY,
       textColor: COLORS.BLACK,
-      onPress: () => {},
+      onPress: () =>
+        notify(`${username} hates you so much. What did you do???`),
     },
   ]
 
@@ -89,7 +104,11 @@ const Home = () => {
           startDate={startDate}
           message={message}
           setMessage={setMessage}
-          sendMessage={sendMessage}
+          sendMessage={async () => {
+            if (isNullOrWhiteSpace(message)) return
+            await notify(`You got a message from ${username}: ${message}`)
+            setMessage("")
+          }}
           username={username}
           partnerName={partnerName}
         />
