@@ -17,7 +17,25 @@ export const createUser = async (username, token) => {
 }
 
 export const getUser = async (username) => {
-  console.log({ username })
   const snapshot = await db.collection(COLLECTIONS.USERS).doc(username).get()
   return snapshot.data()
+}
+
+export const addPartner = async (username, startDate, partnerName) => {
+  if (isNullOrWhiteSpace(startDate))
+    throw new Error(
+      "You have pick the day you have started falling in love with each other"
+    )
+  if (isNullOrWhiteSpace(partnerName))
+    throw new Error("Invalid partner username")
+
+  const snapshot = await db.collection(COLLECTIONS.USERS).doc(partnerName).get()
+  const partner = snapshot.data()
+  if (!partner) throw new Error("Username doesn't exist")
+
+  await db
+    .collection(COLLECTIONS.USERS)
+    .doc(username)
+    .update({ partnerName, startDate })
+  return { partnerName, partnerToken: partner.token, startDate }
 }

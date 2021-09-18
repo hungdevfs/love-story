@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/roboto": "^0.2.0",
     "@react-native-async-storage/async-storage": "^1.15.8",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
@@ -16,10 +17,13 @@
     "expo-notifications": "~0.12.3",
     "expo-status-bar": "~1.0.4",
     "firebase": "8.2.3",
+    "moment": "^2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-modal": "^13.0.0",
+    "react-native-neat-date-picker": "^1.0.7",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {

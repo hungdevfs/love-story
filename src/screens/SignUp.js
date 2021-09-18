@@ -13,7 +13,6 @@ const SignUp = () => {
 
   const create = async () => {
     try {
-      console.log({ newUsername, token })
       await createUser(newUsername, token)
       setUsername(newUsername)
       setIsLogged(true)

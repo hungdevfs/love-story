@@ -19,8 +19,8 @@ export const AppContext = React.createContext()
 export const AppProvider = ({ children }) => {
   const [token, setToken] = useState("")
   const [username, setUsername] = useState("")
-  const [partnerId, setPartnerId] = useState(null)
   const [partnerName, setPartnerName] = useState(null)
+  const [partnerToken, setPartnerToken] = useState(null)
   const [startDate, setStartDate] = useState(null)
   const [isCheckingAuthentication, setIsCheckingAuthentication] = useState(true)
   const [isLogged, setIsLogged] = useState(false)
@@ -49,9 +49,13 @@ export const AppProvider = ({ children }) => {
       setUsername(user)
       setIsLogged(true)
       const data = await getUser(user)
-      setPartnerId(data?.partnerId)
-      setPartnerName(data?.partnerName)
-      setStartDate(data?.startDate)
+      if (data?.partnerName) {
+        setPartnerName(data.partnerName)
+        setStartDate(data.startDate)
+
+        const partner = await getUser(data.partnerName)
+        setPartnerToken(partner.token)
+      }
     }
     setIsCheckingAuthentication(false)
   }
@@ -61,15 +65,15 @@ export const AppProvider = ({ children }) => {
       value={{
         token,
         username,
-        partnerId,
         partnerName,
+        partnerToken,
         startDate,
         isCheckingAuthentication,
         isLogged,
         setToken,
         setUsername,
-        setPartnerId,
         setPartnerName,
+        setPartnerToken,
         setStartDate,
         setIsCheckingAuthentication,
         setIsLogged,
