@@ -49,11 +49,12 @@ const Home = () => {
     setIsLoading(false)
   }
 
-  const notify = async (title) => {
+  const notify = async (title, body) => {
     try {
       await sendNotification({
         to: partnerToken,
         title,
+        body,
       })
     } catch (err) {
       alert(err.message)
@@ -66,21 +67,22 @@ const Home = () => {
       backgroundColor: COLORS.RED,
       textColor: COLORS.WHITE,
       icon: "love",
-      onPress: () => notify(`${username} wants to say: I love you!`),
+      onPress: () => notify(`${username} wants to say to you`, "I love you!"),
     },
     {
       text: "Come hereeee!",
       backgroundColor: COLORS.GREEN,
       textColor: COLORS.WHITE,
       icon: "travel",
-      onPress: () => notify(`${username} wants to say: Come hereeee!`),
+      onPress: () => notify(`${username} wants to say to you`, "Come hereeee!"),
     },
     {
       text: "Get away from me!",
       backgroundColor: COLORS.YELLOW,
       textColor: COLORS.BLACK,
       icon: "angry",
-      onPress: () => notify(`${username} wants to say: Get away from me!`),
+      onPress: () =>
+        notify(`${username} wants to say to you`, "Get away from me!"),
     },
     {
       text: "I hate you!!!",
@@ -88,7 +90,7 @@ const Home = () => {
       textColor: COLORS.BLACK,
       icon: "hate",
       onPress: () =>
-        notify(`${username} hates you so much. What did you do???`),
+        notify(`${username} hates you so much. What did you do???`, null),
     },
   ]
 
@@ -110,7 +112,7 @@ const Home = () => {
           setMessage={setMessage}
           sendMessage={async () => {
             if (isNullOrWhiteSpace(message)) return
-            await notify(`You got a message from ${username}: ${message}`)
+            await notify(`You got a message from ${username}`, message)
             setMessage("")
           }}
           username={username}

@@ -45,5 +45,5 @@ export const registerForPushNotificationsAsync = async () => {
   return token
 }
 
-export const sendNotification = ({ to, title }) =>
-  axios.post(EXPO_NOTIFICATION_URL, { to, title })
+export const sendNotification = ({ to, title, body }) =>
+  axios.post(EXPO_NOTIFICATION_URL, { to, title, body, channelId: "default" })
